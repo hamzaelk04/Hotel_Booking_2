@@ -14,6 +14,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+<<<<<<< HEAD
     <dependencies>
         <dependency>
             <groupId>org.postgresql</groupId>
@@ -22,4 +23,6 @@
         </dependency>
     </dependencies>
 
+=======
+>>>>>>> a3b5a83013d5cb2cbd7a5886cb02a2aa878484ff
 </project>
