@@ -14,15 +14,18 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-<<<<<<< HEAD
+
     <dependencies>
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>42.7.3</version>
         </dependency>
-    </dependencies>
 
-=======
->>>>>>> a3b5a83013d5cb2cbd7a5886cb02a2aa878484ff
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+            <version>13.1.0</version>
+        </dependency>
+    </dependencies>
 </project>
