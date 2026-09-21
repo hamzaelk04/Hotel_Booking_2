@@ -40,3 +40,4 @@ build/
 
 # DB Config 
 src/main/java/Config/DatabaseConfig.java
+src/main/resources/application.properties
