@@ -1,6 +1,7 @@
 package View.Main;
 
 import Util.ViewUtil;
+import View.Auth.RegisterView;
 
 public class MainView {
 
@@ -16,6 +17,7 @@ public class MainView {
 
         switch (choice) {
             case 1:
+                RegisterView.registerMenuView();
 //                RegisterView.registerMenu(authService, roomService, reservationService);
                 break;
             case 2:

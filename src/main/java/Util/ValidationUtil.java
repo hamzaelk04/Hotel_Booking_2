@@ -10,7 +10,7 @@ public class ValidationUtil {
             Pattern.compile("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[a-z]{2,}$", Pattern.CASE_INSENSITIVE);
 
     private static final Pattern PHONE_PATTERN =
-            Pattern.compile("^(?:\\+33|0)[1-9](?:[\\s.-]?\\d{2}){4}$");
+            Pattern.compile("^(?:\\+212|0)[1-9](?:[\\s.-]?\\d{2}){4}$");
 
     private static final Pattern PASSWORD_PATTERN =
             Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$");
@@ -23,8 +23,8 @@ public class ValidationUtil {
         return email != null && EMAIL_PATTERN.matcher(email.trim()).matches();
     }
 
-    public static boolean isValidPhoneNumber(String phoneNumber) {
-        return phoneNumber != null && PHONE_PATTERN.matcher(phoneNumber.trim()).matches();
+    public static boolean isValidPhone(String phone) {
+        return phone != null && PHONE_PATTERN.matcher(phone.trim()).matches();
     }
 
     public static boolean isValidPassword(String password) {

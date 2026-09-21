@@ -8,14 +8,14 @@ public class User {
     private UUID id;
     private String name;
     private String email;
-    private String numberPhone;
+    private String phone;
     private String password;
     private UserRole role;
 
-    public User(String name, String email,String numberPhone, String password) {
+    public User(String name, String email,String phone, String password) {
         this.name = name;
         this.email = email;
-        this.numberPhone = numberPhone;
+        this.phone = phone;
         this.password = password;
     }
 
@@ -40,11 +40,11 @@ public class User {
     }
 
     public String getPhoneNumber() {
-        return numberPhone;
+        return phone;
     }
 
-    public void setNumberPhone(String numberPhone) {
-        this.numberPhone = numberPhone;
+    public void setNumberPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getPassword() {
