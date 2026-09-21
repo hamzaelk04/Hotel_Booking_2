@@ -1,3 +1,5 @@
+package com.hotelbooking.Main;
+
 import Config.DatabaseInitializer;
 import View.Main.MainView;
 
