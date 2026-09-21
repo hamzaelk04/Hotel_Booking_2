@@ -23,6 +23,8 @@ public class User {
         return id;
     }
 
+    public void setId(UUID id) {this.id = id; }
+
     public String getName() {
         return name;
     }
@@ -39,11 +41,11 @@ public class User {
         this.email = email;
     }
 
-    public String getPhoneNumber() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setNumberPhone(String phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 

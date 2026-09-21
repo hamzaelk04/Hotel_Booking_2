@@ -26,7 +26,7 @@ public class DataBaseConnection {
         }
     }
 
-    private static synchronized DataBaseConnection getInstance() {
+    public static synchronized DataBaseConnection getInstance() {
         try {
             if (instance == null || instance.getConnection().isClosed()) {
                 instance = new DataBaseConnection();
