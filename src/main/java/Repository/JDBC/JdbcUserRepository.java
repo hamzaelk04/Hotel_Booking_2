@@ -1,6 +1,7 @@
 package Repository.JDBC;
 
 import DB.DataBaseConnection;
+import Model.Enum.UserRole;
 import Model.User;
 import Repository.UserRepository;
 
@@ -45,4 +46,36 @@ public class JdbcUserRepository implements UserRepository {
             throw new RuntimeException("Database error while saving user: " + e.getMessage(), e);
         }
     }
+
+    @Override
+    public Optional<User> findByEmail(String email) {
+        String sql = """
+                    SELECT id, name, email, phone, password, role FROM users
+                    WHERE email = ?
+                """;
+
+        try (Connection connection = DataBaseConnection.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setString(1, email);
+
+            try (ResultSet resultSet = statement.executeQuery()){
+                if (resultSet.next()) {
+                    User user = new User(resultSet.getString("name"),
+                            resultSet.getString("email"),
+                            resultSet.getString("phone"),
+                            resultSet.getString("password"));
+                    user.setId(resultSet.getObject("id", UUID.class));
+                    user.setRole(UserRole.valueOf(resultSet.getString("role")));
+
+                    return Optional.of(user);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Database error while fetching user by email: " + e.getMessage(), e);
+        }
+
+        return Optional.empty();
+    }
+
 }
