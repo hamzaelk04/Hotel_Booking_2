@@ -1,8 +1,8 @@
-package View.Main;
+package view.main;
 
-import Util.ViewUtil;
-import View.Auth.LoginView;
-import View.Auth.RegisterView;
+import util.ViewUtil;
+import view.auth.LoginView;
+import view.auth.RegisterView;
 
 public class MainView {
 

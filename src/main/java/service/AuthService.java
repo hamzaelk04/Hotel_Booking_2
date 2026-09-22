@@ -1,9 +1,12 @@
-package Service;
+package service;
 
-import Model.User;
-import Repository.JDBC.JdbcUserRepository;
-import Repository.UserRepository;
-import Util.PasswordUtil;
+import exception.EmailNotFoundException;
+import exception.IncorrectPasswordException;
+import exception.NullUserException;
+import model.User;
+import repository.JDBC.JdbcUserRepository;
+import repository.UserRepository;
+import util.PasswordUtil;
 
 import java.util.UUID;
 
@@ -34,17 +37,17 @@ public class AuthService {
 
     public UUID login(String email, String password) {
         if (!userRepository.existsByEmail(email)){
-//            Throw Email not found exception
+            throw new EmailNotFoundException();
         }
 
         User user = userRepository.findByEmail(email).orElse(null);
 
         if (user == null) {
-//            Throw null User exception
+            throw new NullUserException();
         }
 
         if (!PasswordUtil.checkPassword(password, user.getPassword())) {
-//            Throw incorrect password exception
+            throw new IncorrectPasswordException();
         }
 
         return user.getId();

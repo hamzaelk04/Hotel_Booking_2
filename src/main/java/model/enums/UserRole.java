@@ -1,4 +1,4 @@
-package Model.Enum;
+package model.enums;
 
 public enum UserRole {
     Client,

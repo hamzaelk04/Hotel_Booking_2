@@ -1,12 +1,11 @@
-package Repository.JDBC;
+package repository.JDBC;
 
 import DB.DataBaseConnection;
-import Model.Enum.UserRole;
-import Model.User;
-import Repository.UserRepository;
+import model.enums.UserRole;
+import model.User;
+import repository.UserRepository;
 
 import java.sql.*;
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 

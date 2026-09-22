@@ -1,7 +1,7 @@
 package com.hotelbooking.Main;
 
-import Config.DatabaseInitializer;
-import View.Main.MainView;
+import config.DatabaseInitializer;
+import view.main.MainView;
 
 public class Main {
     public static void main(String[] args) {

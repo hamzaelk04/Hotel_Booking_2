@@ -1,11 +1,9 @@
-package View.Auth;
+package view.auth;
 
-import Service.AuthService;
-import Util.InputUtil;
-import Util.PromptUtil;
-import Util.ViewUtil;
-
-import java.util.UUID;
+import service.AuthService;
+import util.InputUtil;
+import util.PromptUtil;
+import util.ViewUtil;
 
 public class LoginView {
     private final static AuthService authService = new AuthService();

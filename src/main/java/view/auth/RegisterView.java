@@ -1,10 +1,10 @@
-package View.Auth;
+package view.auth;
 
-import Model.User;
-import Service.AuthService;
-import Util.InputUtil;
-import Util.PromptUtil;
-import Util.ViewUtil;
+import model.User;
+import service.AuthService;
+import util.InputUtil;
+import util.PromptUtil;
+import util.ViewUtil;
 
 public class RegisterView {
     private final static AuthService authService = new AuthService();

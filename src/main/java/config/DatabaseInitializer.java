@@ -1,4 +1,4 @@
-package Config;
+package config;
 
 import org.flywaydb.core.Flyway;
 import org.flywaydb.core.api.FlywayException;
