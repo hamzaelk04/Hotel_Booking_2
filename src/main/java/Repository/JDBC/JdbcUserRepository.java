@@ -78,4 +78,23 @@ public class JdbcUserRepository implements UserRepository {
         return Optional.empty();
     }
 
+    @Override
+    public boolean existsByEmail(String email) {
+        String sql = """
+                SELECT 1 FROM users WHERE email = ?
+                LIMIT 1
+                """;
+
+        try (Connection connection = DataBaseConnection.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setString(1, email);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                return resultSet.next();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Database error while checking email existence: " + e.getMessage(), e);
+        }
+    }
 }
