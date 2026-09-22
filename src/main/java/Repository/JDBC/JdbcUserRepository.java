@@ -35,14 +35,13 @@ public class JdbcUserRepository implements UserRepository {
                 if (generatedKeys.next()) {
                     UUID generatedId = generatedKeys.getObject(1, UUID.class);
                     user.setId(generatedId);
-                    
+
                 } else {
                     throw new SQLException("Creating user failed, no ID obtained.");
                 }
             }
 
         } catch (SQLException e) {
-            // Log or rethrow as a custom runtime exception
             throw new RuntimeException("Database error while saving user: " + e.getMessage(), e);
         }
     }
