@@ -15,7 +15,11 @@ public class AuthService {
     private final UserRepository userRepository;
 
     public AuthService() {
-        this.userRepository = new JdbcUserRepository();
+        this.userRepository = JdbcUserRepository.getInstance();
+    }
+
+    public AuthService(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     public void register(User user) {

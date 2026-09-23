@@ -11,6 +11,16 @@ import java.util.UUID;
 
 public class JdbcUserRepository implements UserRepository {
 
+    private JdbcUserRepository() {}
+
+    private static class SingletonHolder {
+        private static final JdbcUserRepository INSTANCE = new JdbcUserRepository();
+    }
+
+    public static JdbcUserRepository getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
+
     @Override
     public void save(User user) {
         String sql = """
@@ -44,6 +54,36 @@ public class JdbcUserRepository implements UserRepository {
         } catch (SQLException e) {
             throw new RuntimeException("Database error while saving user: " + e.getMessage(), e);
         }
+    }
+
+    @Override
+    public Optional<User> findById(UUID id) {
+        String sql = """
+                SELECT name, email, phone, password, role FROM users 
+                WHERE id = ?
+                """;
+        try (Connection connection = DataBaseConnection.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setObject(1, id);
+
+            try (ResultSet resultSet = statement.executeQuery()){
+                if (resultSet.next()) {
+                    User user = new User(resultSet.getString("name"),
+                            resultSet.getString("email"),
+                            resultSet.getString("phone"),
+                            resultSet.getString("password"));
+                    user.setId(id);
+                    user.setRole(UserRole.valueOf(resultSet.getString("role")));
+
+                    return Optional.of(user);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Database error while fetching user by email: " + e.getMessage(), e);
+        }
+
+        return Optional.empty();
     }
 
     @Override
