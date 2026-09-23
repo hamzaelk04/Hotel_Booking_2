@@ -15,7 +15,7 @@ import java.util.UUID;
 public class LoginView {
     private final static AuthService authService = new AuthService();
 
-    public static void loginMenuView() {
+    public static void showMenu() {
         ViewUtil.printHeader();
 
         String email = InputUtil.readEmail(PromptUtil.emailPrompt());

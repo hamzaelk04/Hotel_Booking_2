@@ -9,7 +9,7 @@ import util.ViewUtil;
 public class RegisterView {
     private final static AuthService authService = new AuthService();
 
-    public static void registerMenuView() {
+    public static void showMenu() {
         ViewUtil.printHeader();
 
         String name = InputUtil.readName(PromptUtil.namePrompt());
@@ -29,7 +29,7 @@ public class RegisterView {
 
             InputUtil.emptyInput(PromptUtil.emptyPrompt());
 
-            LoginView.loginMenuView();
+            LoginView.showMenu();
         } catch (Exception e) {
             System.out.println("\n Erreur lors de l'inscription : " + e.getMessage());
         }

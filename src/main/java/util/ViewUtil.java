@@ -15,6 +15,8 @@ public class ViewUtil {
 
     public static int readIntChoice() {
         while (true) {
+            System.out.println("Enter a valid number");
+
             String line = scanner.nextLine().trim();
             try {
                 return Integer.parseInt(line);
