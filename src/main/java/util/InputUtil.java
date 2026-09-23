@@ -52,4 +52,16 @@ public class InputUtil {
             System.out.println("❌ Numéro de téléphone invalide (ex: 0612345678 ou +212612345678).");
         }
     }
+
+    public static void emptyInput(String prompt) {
+        while (true) {
+            System.out.println(prompt);
+            String input = scanner.nextLine();
+
+            if (input.isBlank()) {
+                return;
+            }
+            System.out.println("❌ Press Enter please.");
+        }
+    }
 }

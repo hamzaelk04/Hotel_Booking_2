@@ -28,4 +28,11 @@ public class PromptUtil {
                 ======================== \n
                 """;
     }
+
+    public static String emptyPrompt() {
+        return """
+                Press Enter to continue: \n
+                ======================== \n
+                """;
+    }
 }

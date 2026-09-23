@@ -26,6 +26,10 @@ public class RegisterView {
             authService.register(user);
 
             System.out.println("\n Compte créé avec succès !");
+
+            InputUtil.emptyInput(PromptUtil.emptyPrompt());
+
+            LoginView.loginMenuView();
         } catch (Exception e) {
             System.out.println("\n Erreur lors de l'inscription : " + e.getMessage());
         }
