@@ -57,9 +57,33 @@ public class JdbcUserRepository implements UserRepository {
     }
 
     @Override
+    public void update(UUID id, String column, String newValue) {
+        String sql = """
+                UPDATE users
+                SET ? = ? WHERE id = ?
+                """;
+
+        try (Connection connection = DataBaseConnection.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, column);
+            statement.setString(2, newValue);
+            statement.setObject(3, id);
+
+            int affectedRows = statement.executeUpdate();
+
+            if (affectedRows == 0) {
+                throw new SQLException("Updating user failed, no rows affected.");
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Database error while updating user: " + e.getMessage(), e);
+        }
+    }
+
+    @Override
     public Optional<User> findById(UUID id) {
         String sql = """
-                SELECT name, email, phone, password, role FROM users 
+                SELECT name, email, phone, password, role FROM users
                 WHERE id = ?
                 """;
         try (Connection connection = DataBaseConnection.getInstance().getConnection();
