@@ -9,6 +9,7 @@ import repository.UserRepository;
 import strategy.ProfileUpdateStrategy;
 import strategy.profile.UpdateEmailStrategy;
 import strategy.profile.UpdateNameStrategy;
+import strategy.profile.UpdatePhoneStrategy;
 import util.PasswordUtil;
 
 import java.util.UUID;
@@ -49,6 +50,10 @@ public class AuthService {
             strategy.update(id);
         } else if (column.equals("email")) {
             ProfileUpdateStrategy strategy = new UpdateEmailStrategy(userRepository);
+
+            strategy.update(id);
+        } else if (column.equals("phone")) {
+            ProfileUpdateStrategy strategy = new UpdatePhoneStrategy(userRepository);
 
             strategy.update(id);
         }

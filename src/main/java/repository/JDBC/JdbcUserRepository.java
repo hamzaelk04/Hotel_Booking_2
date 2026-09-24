@@ -7,6 +7,7 @@ import repository.UserRepository;
 
 import java.sql.*;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 
 public class JdbcUserRepository implements UserRepository {
@@ -58,16 +59,22 @@ public class JdbcUserRepository implements UserRepository {
 
     @Override
     public void update(UUID id, String column, String newValue) {
-        String sql = """
+        Set<String> allowedColumns = Set.of("name", "email", "phone", "password");
+
+        if (!allowedColumns.contains(column)) {
+            throw new IllegalArgumentException("Invalid column name: " + column);
+        }
+
+        String sql = String.format("""
                 UPDATE users
-                SET ? = ? WHERE id = ?
-                """;
+                SET %s = ? WHERE id = ?
+                """, column);
+
 
         try (Connection connection = DataBaseConnection.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setString(1, column);
-            statement.setString(2, newValue);
-            statement.setObject(3, id);
+            statement.setString(1, newValue);
+            statement.setObject(2, id);
 
             int affectedRows = statement.executeUpdate();
 

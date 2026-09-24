@@ -1,6 +1,7 @@
 package view.roles;
 
 import util.ViewUtil;
+import view.auth.UpdateProfileView;
 
 import java.util.UUID;
 
@@ -50,7 +51,7 @@ public class ClientView {
 
                     break;
                 case 8:
-
+                    UpdateProfileView.showMenu(id);
                     break;
                 case 9:
 

@@ -8,6 +8,7 @@ import service.AuthService;
 import util.InputUtil;
 import util.PromptUtil;
 import util.ViewUtil;
+import view.roles.ClientView;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -31,11 +32,10 @@ public class LoginView {
         }
 
         if (user.map(u -> u.getRole().equals(UserRole.Admin)).orElse(false)) {
-//        Client View
+//        Admin View
             System.out.println(111111);
         } else {
-//        Admin View
-            System.out.println(2222222);
+            ClientView.showMenu(id);
         }
     }
 }

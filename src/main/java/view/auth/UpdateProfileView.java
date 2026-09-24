@@ -19,7 +19,6 @@ public class UpdateProfileView {
                 1. Update the name \n
                 2. Update the email \n
                 3. Update the phone \n
-                4. Return \n
                 0. Exit \n
                 """);
 
@@ -30,10 +29,10 @@ public class UpdateProfileView {
                     authService.update(id, "name");
                     break;
                 case 2:
-//                Update the email
+                    authService.update(id, "email");
                     break;
                 case 3:
-//                Update the phone
+                    authService.update(id, "phone");
                     break;
                 case 0:
                     running = false;
