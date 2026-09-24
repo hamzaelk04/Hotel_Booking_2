@@ -6,6 +6,9 @@ import exception.NullUserException;
 import model.User;
 import repository.JDBC.JdbcUserRepository;
 import repository.UserRepository;
+import strategy.ProfileUpdateStrategy;
+import strategy.profile.UpdateEmailStrategy;
+import strategy.profile.UpdateNameStrategy;
 import util.PasswordUtil;
 
 import java.util.UUID;
@@ -39,8 +42,20 @@ public class AuthService {
         System.out.println("Inscription réussie ! Vous pouvez maintenant vous connecter.");
     }
 
+    public void update(UUID id, String column) {
+        if (column.equals("name")) {
+            ProfileUpdateStrategy strategy = new UpdateNameStrategy(userRepository);
+
+            strategy.update(id);
+        } else if (column.equals("email")) {
+            ProfileUpdateStrategy strategy = new UpdateEmailStrategy(userRepository);
+
+            strategy.update(id);
+        }
+    }
+
     public UUID login(String email, String password) {
-        if (!userRepository.existsByEmail(email)){
+        if (!userRepository.existsByEmail(email)) {
             throw new EmailNotFoundException();
         }
 

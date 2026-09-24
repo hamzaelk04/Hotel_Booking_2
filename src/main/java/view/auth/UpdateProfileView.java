@@ -1,10 +1,14 @@
 package view.auth;
 
+import service.AuthService;
+import strategy.ProfileUpdateStrategy;
+import strategy.profile.UpdateNameStrategy;
 import util.ViewUtil;
 
 import java.util.UUID;
 
 public class UpdateProfileView {
+    private final static AuthService authService = new AuthService();
 
     public static void showMenu(UUID id) {
         ViewUtil.readIntChoice();
@@ -23,7 +27,7 @@ public class UpdateProfileView {
 
             switch (choice) {
                 case 1:
-//                Update the name
+                    authService.update(id, "name");
                     break;
                 case 2:
 //                Update the email
