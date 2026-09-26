@@ -33,7 +33,6 @@ public class LoginView {
 
         if (user.map(u -> u.getRole().equals(UserRole.Admin)).orElse(false)) {
 //        Admin View
-            System.out.println(111111);
         } else {
             ClientView.showMenu(id);
         }

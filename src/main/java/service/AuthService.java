@@ -9,6 +9,7 @@ import repository.UserRepository;
 import strategy.ProfileUpdateStrategy;
 import strategy.profile.UpdateEmailStrategy;
 import strategy.profile.UpdateNameStrategy;
+import strategy.profile.UpdatePasswordStrategy;
 import strategy.profile.UpdatePhoneStrategy;
 import util.PasswordUtil;
 
@@ -56,6 +57,22 @@ public class AuthService {
             ProfileUpdateStrategy strategy = new UpdatePhoneStrategy(userRepository);
 
             strategy.update(id);
+        }
+    }
+
+    public boolean changePassword(UUID id, String oldPassword) {
+        User user = userRepository.findById(id).orElse(null);
+
+        if (user == null) throw new NullUserException();
+
+        if (!PasswordUtil.checkPassword(oldPassword, user.getPassword())) {
+            return true;
+        } else {
+            ProfileUpdateStrategy strategy = new UpdatePasswordStrategy(userRepository);
+
+            strategy.update(id);
+
+            return false;
         }
     }
 
